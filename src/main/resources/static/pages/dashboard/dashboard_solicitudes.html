@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Solicitudes</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="../../assets/img/favicon.png" rel="icon">
+    <link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="../../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="../../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../../assets/css/style.css" rel="stylesheet">
+
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="../../src/js/functions.js"></script>
+    <script src="../../src/js/pages/solicitud.js"></script>
+
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <script>writeHTML("/pages/bar/topbar.html","header")</script>
+</header><!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+    <script>writeHTML("/pages/bar/slidebar.html","sidebar",'document.getElementById("navSolicitudes").className="nav-link"; document.getElementById("solicitudes_nav").className="nav-content collapse show"; document.getElementById("navVerSolicitudes").className="active";')</script>
+</aside><!-- End Sidebar-->
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Lista de solicitudes</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="dashboard.html">Home</a></li>
+            <li class="breadcrumb-item">Solicitudes</li>
+            <li class="breadcrumb-item active">Ver solicitudes</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+
+      <section class="section">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body pt-12 d-flex flex-column">
+                        <h5 class="card-title">Lista de solicitudes</h5>
+            
+                      <!-- Table with hoverable rows -->
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Estudiante Remitente</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Asignatura</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col" id="accion">Acción</th>
+                          </tr>
+                        </thead>
+                        <tbody id="#contSolicitudes">
+            
+                        </tbody>
+                      </table>
+                      <!-- End Table with hoverable rows -->
+                      <script>loadSolicitud()</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+<div class="modal fade" id="addSesion" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Agregar Sesion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row mb-3">
+                        <label for="txtAsunto" class="col-sm-2 col-form-label">Asunto</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="txtAsunto" class="form-control"
+                                   value="Sesion de tutoria académica" disabled>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="txtResolucion" class="col-sm-2 col-form-label">N° de resolución</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="txtResolucion" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Tipo de tutoria</label>
+                        <div class="col-sm-10">
+                            <select class="form-select" id="listTipo" aria-label="Default select example">
+                                <option value="-1" selected>Seleccione el tipo de tutoria</option>
+                                <option value="A">Tutoria para estudiantes con alto rendimiento académico
+                                </option>
+                                <option value="G">Tutoria individual o grupal</option>
+                                <option value="R">Tutoria por curso repetido</option>
+                                <option value="M">Tutoria por matricula condicionada</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Asignatura</label>
+                        <div class="col-sm-10">
+                            <select class="form-select" id="listAsignatura" aria-label="Default select example">
+                                <option value="-1" selected>Seleccione una asignatura</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Tutor</label>
+                        <div class="col-sm-10">
+                            <input onclick="loadTutor()" type="button" class="btn btn-success d-inline-block"
+                                   value="Elegir tutor">
+                        </div>
+                    </div>
+
+                    <script>asignaturas()</script>
+
+                    <div class="row mb-3">
+                        <label for="txtFecha" class="col-sm-2 col-form-label">Fecha de tutoria</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="txtFecha">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="txtFecha" class="col-sm-2 col-form-label">Hora de tutoria</label>
+                        <div class="col-sm-10">
+                            <input type="time" class="form-control" id="txtHora">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Enviar solicitud</label>
+                        <div class="col-sm-10">
+                            <a class="btn btn-primary" onclick="addSesion()">Enviar</a>
+                        </div>
+                    </div>
+
+                </form><!-- End General Form Elements -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="location.reload()" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="listDocentes" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Lista de tutores</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Table with hoverable rows -->
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellido Paterno</th>
+                        <th scope="col">Apellido Materno</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody id="listTutores">
+
+                    </tbody>
+                </table>
+                <!-- End Table with hoverable rows -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="$('#listDocentes').modal('hide');$('#addSesion').modal('show')">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="registerSesion" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cambios Guardados</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Cambios guardados exitosamente, se recargará la página para ver los cambios.</a>
+            </div>
+            <div class="modal-footer">
+                <button onclick="location.reload()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+    <script>writeHTML("/pages/bar/footer.html","footer")</script>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="../../assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/vendor/chart.js/chart.min.js"></script>
+<script src="../../assets/vendor/echarts/echarts.min.js"></script>
+<script src="../../assets/vendor/quill/quill.min.js"></script>
+<script src="../../assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="../../assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="../../assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="../../assets/js/main.js"></script>
+
+
+</body>
+
+</html>

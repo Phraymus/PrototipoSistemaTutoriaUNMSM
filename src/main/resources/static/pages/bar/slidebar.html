@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>slidebar</title>
+</head>
+
+<script>
+    function perfil(){
+        if (localStorage.perfil=="E"){
+            document.getElementById("liRegistrarSesion").className="d-none";
+        }else if (localStorage.perfil=="D"){
+            document.getElementById("liRegistrarSesion").className="d-none";
+            document.getElementById("liSolicitud").className="d-none";
+            document.getElementById("liRegistrarSolicitud").className="d-none";
+        }else{
+            document.getElementById("liRegistrarSolicitud").className="d-none";
+        }
+    }
+</script>
+
+<body>
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a id="navDashboard" class="nav-link collapsed" href="../dashboard/dashboard.html">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-heading">Usuario</li>
+
+        <li class="nav-item">
+            <a id="navPerfil" class="nav-link collapsed" href="../dashboard/dashboard_profile.html">
+                <i class="bi bi-person"></i>
+                <span>Perfil</span>
+            </a>
+        </li><!-- End Profile Page Nav -->
+
+        <li class="nav-heading">Sesiones</li>
+
+        <li class="nav-item">
+            <a id="navSesiones" class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>Sesiones de tutoria</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a id="navVerSesiones" href="../dashboard/dashboard_sesiones.html">
+                        <i class="bi bi-circle"></i><span>Ver sesiones</span>
+                    </a>
+                </li>
+
+                <li id="liRegistrarSesion">
+                    <a id="navRegistrarSesion" href="../../pages/dashboard/dashboard_register_sesion.html">
+                        <i class="bi bi-circle"></i><span>Registrar sesiones</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Components Nav -->
+
+        <div id="liSolicitud" >
+
+        <li class="nav-heading">Solicitudes</li>
+
+        <li class="nav-item">
+            <a id="navSolicitudes" class="nav-link collapsed" data-bs-target="#solicitudes_nav" data-bs-toggle="collapse" href="#">
+                <i class="bx bx-mail-send"></i><span>Solicitudes</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="solicitudes_nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <li>
+                    <a id="navVerSolicitudes" href="../dashboard/dashboard_solicitudes.html">
+                        <i class="bi bi-circle"></i><span>Ver solicitudes</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="liRegistrarSolicitud" href="../dashboard/dashboard_request.html">
+                        <i class="bi bi-circle"></i><span>Solicitar tutoria</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li><!-- End Components Nav -->
+
+        </div>
+
+
+        <li class="nav-heading">Ayuda</li>
+
+        <li class="nav-item">
+            <a id="navContact" class="nav-link collapsed" href="../dashboard/dashboard_contact.html">
+                <i class="bi bi-envelope"></i>
+                <span>Contacto</span>
+            </a>
+        </li><!-- End Contact Page Nav -->
+
+    </ul>
+
+    <script>
+        perfil();
+    </script>
+</body>
+</html>
